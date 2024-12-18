@@ -26,9 +26,7 @@
     </div>
 </section>
 
-
-
-
+<!-- Social Media -->
 
 <!-- Courses -->
 <section class="bg-ligh">
@@ -36,7 +34,7 @@
         <h3 class="text-center text-secondary" id='learn'>Courses</h3>
         <div class="row">
             {% for course in courses %}
-            <div class="col-sm-12 col-md-6 col-lg-4 p-3 d-flex align-items-stretch">
+            <div class="col-sm-12 col-md-6 col-lg-4 p-3 d-flex aligh-items-stretch">
                 <a href="#course_name" class="text-decoration-none">
                     <div class="card bg-dark text-light">
                         <div class="card-body text-center">
@@ -75,45 +73,44 @@
                         </p>
                         <span><img class="article-img" src="{{url_for('static', filename='default.jpg')}}" alt="">By: <a
                                 href="#" class="link">{{lesson.author}}</a></span>
-                                
-                            </div>
-                        </div>
+
                     </div>
-                    {% endfor %}
-                    
                 </div>
             </div>
-        </section>
-        
-        <!-- Social Media -->
-        <section class="bg-dark text-light py-5">
-            <div class="container text-center">
-                <!-- العنوان الرئيسي -->
-                <h3 class="mb-4 fw-bold" style="color: #00d4ff;">انضم إلى مجتمعنا</h3>
-                <!-- الروابط -->
-                <div class="d-flex justify-content-center flex-wrap gap-3">
-                    <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
-                        href="https://github.com/omar-ghoneim" target="_blank">
-                        <i class="bi bi-github"></i> GitHub
-                    </a>
-                    <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
-                        href="https://www.facebook.com/Pythonic88" target="_blank">
-                        <i class="bi bi-facebook"></i> Facebook
-                    </a>
-                    <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
-                    href="https://www.instagram.com/pythonic_88" target="_blank">
-                    <i class="bi bi-instagram"></i> Instagram
-                </a>
-                    <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
-                        href="https://twitter.com/Pythonic88" target="_blank">
-                        <i class="bi bi-twitter"></i> Twitter
-                    </a>
-                    <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
-                        href="https://www.tiktok.com/@pythonic88" target="_blank">
-                        <i class="bi bi-tiktok"></i> TikTok
-                    </a>
-                </div>
-            </div>
-        </section>
-        
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<section class="bg-dark text-light py-5">
+    <div class="container text-center">
+        <!-- العنوان الرئيسي -->
+        <h3 class="mb-4 fw-bold" style="color: #00d4ff;">انضم إلى مجتمعنا</h3>
+        <!-- الروابط -->
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
+                href="https://github.com/omar-ghoneim" target="_blank">
+                <i class="bi bi-github"></i> GitHub
+            </a>
+            <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
+                href="https://www.facebook.com/Pythonic88" target="_blank">
+                <i class="bi bi-facebook"></i> Facebook
+            </a>
+            <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
+                href="https://www.instagram.com/pythonic_88" target="_blank">
+                <i class="bi bi-instagram"></i> Instagram
+            </a>
+            <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
+                href="https://twitter.com/Pythonic88" target="_blank">
+                <i class="bi bi-twitter"></i> Twitter
+            </a>
+            <a class="btn btn-outline-info rounded-pill px-4 d-flex align-items-center gap-2" 
+                href="https://www.tiktok.com/@pythonic88" target="_blank">
+                <i class="bi bi-tiktok"></i> TikTok
+            </a>
+        </div>
+    </div>
+</section>
+
 {% endblock content%}
