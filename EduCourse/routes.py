@@ -1,7 +1,7 @@
-from pythonic.models import User, Lesson, Course
+from EduCorses.models import User, Lesson, Course
 from flask import render_template, url_for, flash, redirect
-from pythonic.forms import RegistrationForm, LoginForm
-from pythonic import app
+from EduCourse.forms import RegistrationForm, LoginForm
+from EduCourse import app
 
 
 lessons = [
