@@ -1,5 +1,5 @@
 from datetime import datetime
-from EduCourse import db
+from pythonic import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
