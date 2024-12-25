@@ -1,6 +1,6 @@
 from pythonic.models import User, Lesson, Course
 from flask import render_template, url_for, flash, redirect, request
-from pythonic.forms import RegistrationForm, LoginForm
+from pythonic.forms import RegistrationForm, LoginForm, UpdateProfileForm
 from pythonic import app, bcrypt, db
 from flask_login import (
     login_required,
@@ -83,6 +83,9 @@ courses = [
 ]
 
 
+
+
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -126,7 +129,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
+            next_page = request.args.get("next")
             flash("You have been logged in!", "success")
             return redirect(next_page) if next_page else redirect(url_for("home"))
         else:
@@ -139,3 +142,25 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
+
+@app.route("/dashboard", methods=["GET", "POST"])
+@login_required
+def dashboard():
+    profile_form = UpdateProfileForm()
+    if profile_form.validate_on_submit():
+        
+        current_user.username = profile_form.username.data
+        current_user.email = profile_form.email.data
+        current_user.bio = profile_form.bio.data
+        db.session.commit()
+        flash("Your profile has been updated", "success")
+        return redirect(url_for("dashboard"))
+    elif request.method == "GET":
+        profile_form.username.data = current_user.username
+        profile_form.email.data = current_user.email
+        profile_form.bio.data = current_user.bio
+    return render_template(
+        "dashboard.html",
+        title="Dashboard",
+        profile_form=profile_form,
+    )
