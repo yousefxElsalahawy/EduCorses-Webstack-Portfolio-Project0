@@ -1,5 +1,6 @@
 from tokenize import String
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import (
@@ -68,7 +69,9 @@ class UpdateProfileForm(FlaskForm):
     )
     email = StringField("Email", validators=[DataRequired(), Email()])
     bio = TextAreaField("Bio")
-    
+    picture = FileField(
+        "Update Profile Picture", validators=[FileAllowed(["jpg", "png"])]
+    )
     submit = SubmitField("Update")
 
     def validate_username(self, username):

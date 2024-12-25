@@ -1,3 +1,6 @@
+import secrets
+from PIL import Image
+import os
 from pythonic.models import User, Lesson, Course
 from flask import render_template, url_for, flash, redirect, request
 from pythonic.forms import RegistrationForm, LoginForm, UpdateProfileForm
@@ -83,7 +86,16 @@ courses = [
 ]
 
 
-
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_name = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, "static/user_pics", picture_name)
+    output_size = (150, 150)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+    return picture_name
 
 
 @app.route("/")
@@ -148,7 +160,9 @@ def logout():
 def dashboard():
     profile_form = UpdateProfileForm()
     if profile_form.validate_on_submit():
-        
+        if profile_form.picture.data:
+            picture_file = save_picture(profile_form.picture.data)
+            current_user.image_file = picture_file
         current_user.username = profile_form.username.data
         current_user.email = profile_form.email.data
         current_user.bio = profile_form.bio.data
@@ -159,8 +173,10 @@ def dashboard():
         profile_form.username.data = current_user.username
         profile_form.email.data = current_user.email
         profile_form.bio.data = current_user.bio
+    image_file = url_for("static", filename=f"user_pics/{current_user.image_file}")
     return render_template(
         "dashboard.html",
         title="Dashboard",
         profile_form=profile_form,
+        image_file=image_file,
     )
